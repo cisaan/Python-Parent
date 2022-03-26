@@ -1,0 +1,60 @@
+"""
+Created on 08th of Feb 2021
+Author: Zeeshan Nasir
+
+Purpose:
+      - Matching the Parentheses
+References:
+     https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-python/
+"""
+
+# balanced parentheses in an expression
+# list containing the items
+open_list = ["[","{","("]
+# second list containing the items
+close_list = ["]","}",")"]
+# Function to check parentheses
+def check(myStr):
+    # Stack used to put the lists
+    stack = []
+    # For loop used to check the string
+    for i in myStr:
+        # If used to check the 1st list
+        if i in open_list:
+            # will add the items in the stack
+            stack.append(i)
+            # elid the items in the 2nd list
+        elif i in close_list:
+            # will add the items is the index
+            pos = close_list.index(i)
+            # if to check the length of the stack
+            if ((len(stack) > 0) and
+            # assigning the list
+                (open_list[pos] == stack[len(stack)-1])):
+            # pop used to take the items out
+                stack.pop()
+            # else will print the next
+            else:
+            # Will return the follwing and will print it
+                return " Unbalanced "
+            # If to check the satck list
+    if len(stack) == 0:
+            # Will return it is correct
+        return " Balanced "
+
+    else:
+            # Else will print wrong
+        return " Unbalanced "
+
+# Strings to check
+string = "{[]{()}}"
+# Printing the first string
+print(string,"-", check(string))
+# second string to check
+string = "[{}{})(]"
+# Printing the second string
+print(string,"-", check(string))
+# third string to check
+string = "((()"
+# Printing the thid string
+print(string,"-",check(string))
